@@ -1,4 +1,5 @@
 import 'package:ecommarce/cart/cart_page.dart';
+import 'package:ecommarce/dashboard/navbar/nav_bar_item.dart';
 import 'package:ecommarce/home/home_page.dart';
 import 'package:ecommarce/profile/profile_page.dart';
 import 'package:ecommarce/wishlist/wish_page.dart';
@@ -32,42 +33,67 @@ class _DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _widget_List.elementAt(_selectedIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_outlined,
-              color: UtilConstant.shark,
+      body: _widget_List[_selectedIndex],
+      bottomNavigationBar: BottomAppBar(
+        color: UtilConstant.pampas,
+        elevation: 0,
+        child: SizedBox(
+          height: 60,
+          width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                IconBottomBar(
+                    text: "Home",
+                    icon: Icons.home_outlined,
+                    selected: _selectedIndex == 0,
+                    selectedColor: UtilConstant.shark,
+                    unSelectedColor: UtilConstant.rollingstone,
+                    onPressed: () {
+                      setState(() {
+                        _selectedIndex = 0;
+                      });
+                    }),
+                IconBottomBar(
+                    text: "WishList",
+                    icon: Icons.favorite_border_outlined,
+                    selected: _selectedIndex == 1,
+                    selectedColor: UtilConstant.shark,
+                    unSelectedColor: UtilConstant.rollingstone,
+                    onPressed: () {
+                      setState(() {
+                        _selectedIndex = 1;
+                      });
+                    }),
+                IconBottomBar(
+                    text: "Cart",
+                    icon: Icons.shopping_cart_outlined,
+                    selected: _selectedIndex == 2,
+                    selectedColor: UtilConstant.shark,
+                    unSelectedColor: UtilConstant.rollingstone,
+                    onPressed: () {
+                      setState(() {
+                        _selectedIndex = 2;
+                      });
+                    }),
+                IconBottomBar(
+                    text: "Profile",
+                    icon: Icons.person_outline_outlined,
+                    selected: _selectedIndex == 3,
+                    selectedColor: UtilConstant.shark,
+                    unSelectedColor: UtilConstant.rollingstone,
+                    onPressed: () {
+                      setState(() {
+                        _selectedIndex = 3;
+                      });
+                    }),
+              ],
             ),
-            label: 'Home',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.favorite_border_outlined,
-              color: UtilConstant.shark,
-            ),
-            label: 'Wishlist',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.shopping_cart_outlined,
-              color: UtilConstant.shark,
-            ),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person_outline_outlined,
-              color: UtilConstant.shark,
-            ),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        showSelectedLabels: true,
-        selectedItemColor: UtilConstant.shark,
-        onTap: _onItemTapped,
+        ),
       ),
     );
   }
