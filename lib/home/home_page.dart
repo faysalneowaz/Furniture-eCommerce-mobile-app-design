@@ -13,6 +13,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
+  List<Widget> _widget_List = [];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,32 +31,34 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         title: const Text(
           "Home",
-          style: TextStyle(color: UtilConstant.shark),
+          style: TextStyle(
+            color: UtilConstant.shark,
+          ),
         ),
         centerTitle: true,
-        leading: Container(
-          height: 50,
-          width: 50,
-          margin: const EdgeInsets.only(
-            left: 10.0,
-            top: 5.0,
-          ),
-          child: OutlinedButton(
-            style: OutlinedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(40.0),
-              ),
-              side:
-                  const BorderSide(width: 1, color: UtilConstant.rollingstone),
-            ),
-            onPressed: () {},
-            child: const Icon(
-              Icons.arrow_back_ios,
-              size: 20,
-              color: UtilConstant.rollingstone,
-            ),
-          ),
-        ),
+        // leading: Container(
+        //   height: 50,
+        //   width: 50,
+        //   margin: const EdgeInsets.only(
+        //     left: 10.0,
+        //     top: 5.0,
+        //   ),
+        //   child: OutlinedButton(
+        //     style: OutlinedButton.styleFrom(
+        //       shape: RoundedRectangleBorder(
+        //         borderRadius: BorderRadius.circular(40.0),
+        //       ),
+        //       side:
+        //           const BorderSide(width: 1, color: UtilConstant.rollingstone),
+        //     ),
+        //     onPressed: () {},
+        //     child: const Icon(
+        //       Icons.arrow_back_ios,
+        //       size: 20,
+        //       color: UtilConstant.rollingstone,
+        //     ),
+        //   ),
+        // ),
         actions: [
           Container(
             height: 50,
@@ -93,7 +105,28 @@ class _HomePageState extends State<HomePage> {
           },
         ),
       ),
-      // bottomNavigationBar: ,
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: const [
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.home_outlined),
+      //       label: 'Home',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.favorite_border_outlined),
+      //       label: 'Wishlist',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.shopping_cart_outlined),
+      //       label: 'Cart',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.person_outline_outlined),
+      //       label: 'Profile',
+      //     ),
+      //   ],
+      //   currentIndex: _selectedIndex,
+      //   onTap: _onItemTapped,
+      // ),
     );
   }
 }

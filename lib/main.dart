@@ -1,4 +1,4 @@
-import 'package:ecommarce/home/home_page.dart';
+import 'package:ecommarce/dashboard/dash_board.dart';
 import 'package:ecommarce/util/constant.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: UtilConstant.APP_NAME,
-      home: HomePage(),
+      home: DashBoard(),
     );
   }
 }
