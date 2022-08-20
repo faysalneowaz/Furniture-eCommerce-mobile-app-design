@@ -1,15 +1,21 @@
-import 'package:ecommarce/util/constant.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:ecommarce/provider/cart_provider.dart';
+import 'package:ecommarce/util/constant.dart';
 
 class GridMenuDesign extends StatelessWidget {
   String item_name;
   String image_url;
   double price;
+  int item_id;
   GridMenuDesign({
     Key? key,
     required this.item_name,
     required this.image_url,
     required this.price,
+    required this.item_id,
   }) : super(key: key);
 
   @override
@@ -60,25 +66,31 @@ class GridMenuDesign extends StatelessWidget {
                       color: UtilConstant.shark,
                       fontWeight: FontWeight.w600),
                 ),
-                InkWell(
-                  onTap: () {},
-                  child: Container(
-                    height: 30,
-                    width: 30,
-                    decoration: BoxDecoration(
-                      color: UtilConstant.cinnabar,
-                      borderRadius: BorderRadius.circular(18.0),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "+",
-                        style: TextStyle(
-                          fontSize: 28,
-                          color: Colors.white,
+                Consumer<CartProvider>(
+                  builder: (context, value, child) {
+                    return InkWell(
+                      onTap: () {
+                        value.add(item_id, item_name, image_url, price);
+                      },
+                      child: Container(
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(
+                          color: UtilConstant.cinnabar,
+                          borderRadius: BorderRadius.circular(18.0),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            "+",
+                            style: TextStyle(
+                              fontSize: 28,
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
               ],
             ),

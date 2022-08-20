@@ -1,9 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecommarce/cart/cart_page.dart';
 import 'package:ecommarce/home/body/body_content.dart';
 import 'package:ecommarce/model/home_item_model.dart';
+import 'package:ecommarce/provider/cart_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:badges/badges.dart';
 
 import 'package:ecommarce/util/constant.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -36,29 +40,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         centerTitle: true,
-        // leading: Container(
-        //   height: 50,
-        //   width: 50,
-        //   margin: const EdgeInsets.only(
-        //     left: 10.0,
-        //     top: 5.0,
-        //   ),
-        //   child: OutlinedButton(
-        //     style: OutlinedButton.styleFrom(
-        //       shape: RoundedRectangleBorder(
-        //         borderRadius: BorderRadius.circular(40.0),
-        //       ),
-        //       side:
-        //           const BorderSide(width: 1, color: UtilConstant.rollingstone),
-        //     ),
-        //     onPressed: () {},
-        //     child: const Icon(
-        //       Icons.arrow_back_ios,
-        //       size: 20,
-        //       color: UtilConstant.rollingstone,
-        //     ),
-        //   ),
-        // ),
         actions: [
           Container(
             height: 50,
@@ -75,11 +56,32 @@ class _HomePageState extends State<HomePage> {
                 side: const BorderSide(
                     width: 1, color: UtilConstant.rollingstone),
               ),
-              onPressed: () {},
-              child: const Icon(
-                Icons.shopping_cart_outlined,
-                size: 20,
-                color: UtilConstant.rollingstone,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const My_Cart_Page(),
+                  ),
+                );
+              },
+              child: Badge(
+                position: BadgePosition.topEnd(top: -12),
+                animationDuration: const Duration(milliseconds: 300),
+                animationType: BadgeAnimationType.slide,
+                badgeContent:
+                    Consumer<CartProvider>(builder: (context, value, child) {
+                  return Text(
+                    value.cartList.length.toString(),
+                    style: const TextStyle(
+                      color: UtilConstant.pampas,
+                    ),
+                  );
+                }),
+                child: const Icon(
+                  Icons.shopping_bag_outlined,
+                  size: 20,
+                  color: UtilConstant.rollingstone,
+                ),
               ),
             ),
           ),
@@ -101,6 +103,7 @@ class _HomePageState extends State<HomePage> {
               item_name: home_Item_list[index].item_name,
               image_url: home_Item_list[index].item_imge,
               price: home_Item_list[index].item_price,
+              item_id: home_Item_list[index].item_id,
             );
           },
         ),
