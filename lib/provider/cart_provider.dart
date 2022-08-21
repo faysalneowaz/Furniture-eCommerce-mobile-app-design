@@ -7,10 +7,12 @@ class CartProvider extends ChangeNotifier {
 
   add(int item_id, String item_name, String item_imge, double item_price) {
     cartList.add(HomeItemModel(
-        item_id: item_id,
-        item_name: item_name,
-        item_imge: item_imge,
-        item_price: item_price));
+      item_id: item_id,
+      item_name: item_name,
+      item_imge: item_imge,
+      item_price: item_price,
+    ));
+
     notifyListeners();
   }
 
