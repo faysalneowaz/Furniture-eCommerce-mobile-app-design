@@ -49,7 +49,7 @@ class _My_Cart_PageState extends State<My_Cart_Page> {
           ),
         ),
       ),
-      body: CartBody(),
+      body: const CartBody(),
     );
   }
 }
